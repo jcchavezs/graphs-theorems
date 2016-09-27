@@ -9,7 +9,13 @@ def isASimpleGraph(degrees: List[Int]): Boolean = {
   }
 
   def checkFormula(degrees: List[Int], k: Int): Boolean = {
-    k * (k - 1) - sumOfTheFirstK(degrees, k) + sumOfTheFirstKMin(degrees.reverse, n - k - 1, k) >= 0
+    val result = k * (k - 1) - sumOfTheFirstK(degrees, k) + sumOfTheFirstKMin(degrees.reverse, n - k - 1, k) >= 0
+
+    if (!result) {
+      printf("Failed for k = %d\n", k)
+    }
+
+    return result
   }
 
   def sumOfTheFirstK(degrees: List[Int], i: Int): Int = i match {
@@ -38,6 +44,7 @@ def isASimpleGraph(degrees: List[Int]): Boolean = {
   isASimpleGraphForK(degrees.sortWith(_>_), n) && isSumOfDegreesEven(degrees)
 }
 
+isASimpleGraph(List(1,2,2,3,3,4,4,4,5,6,11,11))
 isASimpleGraph(List(1,1,1,1))
 isASimpleGraph(List(1,1,1,3))
 isASimpleGraph(List(1,1,3,3))
